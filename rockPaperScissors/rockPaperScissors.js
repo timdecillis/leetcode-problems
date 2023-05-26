@@ -18,8 +18,18 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function () {
+  var lettersArray = ['R', 'P', 'S']
+  var combos = [];
+  for(var i = 0; i < lettersArray.length; i ++) {
+    var currentLetter = lettersArray[i];
+    var combo = ''
+    while(combo.length < 3) {
+      combo += currentLetter;
+    }
+    var currentCombo = combo;
+    combos.push(combo);
+  }
+  return combos;
 };
 

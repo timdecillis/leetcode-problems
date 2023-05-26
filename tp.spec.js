@@ -5,7 +5,7 @@ const multiply = require("./exampleModule").multiply;
 A "describe" block can be used to group together multiple tests
 which check the same nodule or function.
  */
-describe.only("Example tests", function(){
+describe("Example tests", function(){
 
   // Individual tests can be run using the "it" or "test" methods, they are aliased and are equivalent
   it("Should add small numbers", function(){
@@ -28,12 +28,14 @@ Notice the method "only" above. Because it is there, the describe block below wo
 You'll need to remove the "only" from the block above. You can use that method to only run tests
 on the toy problem you're currently working on. https://jestjs.io/docs/en/api#describeonlyname-fn
 */
-describe("Replace this with the name of toy problem", function(){
-  test("Replace this with the desired behaviour", function(){
+describe.only("rockPaperScissors", function(){
+  test("should return every possible 3-character combination of 'R', 'P', and 'S'", function(){
 
     // It's possible to have multiple expects in a single test like this. However, it is often unhelpful. 
     // Just write two tests referring to the "Example Suites" example above for reference.
     expect(add(1,0)).toBe(0);
     expect(multiply(1,1)).toBe(1);
+  });
+  test("desired bahavior", function () {
   });
 });
