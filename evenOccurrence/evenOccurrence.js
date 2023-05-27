@@ -24,13 +24,19 @@ var evenOccurrence = function(arr) {
 
   for (var key in counter) {
     if(counter[key] % 2 === 0) {
-      evensArray.push(parseInt(key));
+        evensArray.push(key);
     }
   }
+
+  for (var k = 0; k < evensArray.length; k ++) {
+    if (parseInt(evensArray[k])) {
+      evensArray[k] = parseInt(evensArray[k])
+    }
+  }
+
   for (var i = 0; i < arr.length; i ++) {
     for (var j = 0; j < evensArray.length; j ++) {
       if (arr[i] === evensArray[j]) {
-        result = arr[i]
         resultArray.push(arr[i]);
       }
     }
