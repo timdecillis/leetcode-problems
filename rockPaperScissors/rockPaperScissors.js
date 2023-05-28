@@ -18,18 +18,27 @@
 *
 */
 
-var rockPaperScissors = function () {
+var rockPaperScissors = function (rounds) {
+  if (rounds === 0) {
+    return [];
+  }
+
   var lettersArray = ['R', 'P', 'S']
   var combos = [];
-  for(var i = 0; i < lettersArray.length; i ++) {
-    var currentLetter = lettersArray[i];
-    var combo = ''
-    while(combo.length < 3) {
-      combo += currentLetter;
+  var rounds = rounds || 3
+
+  var playRounds = plays => {
+    var plays = plays || '';
+    if (plays.length === rounds) {
+      combos.push(plays);
+      return;
     }
-    var currentCombo = combo;
-    combos.push(combo);
-  }
+    for(var i = 0; i < lettersArray.length; i ++) {
+    var currentLetter = lettersArray[i];
+    playRounds(plays + lettersArray[i])
+    }
+  };
+  playRounds();
   return combos;
 };
 

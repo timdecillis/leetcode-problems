@@ -33,15 +33,28 @@ var Stack = function() {
     this[this.length] = value;
     this.length ++;
   };
+
   this.pop = function() {
     this.length --;
     var temp = this[this.length];
-    if (temp === this.lowest) {
-      this.lowest = this.nextHighest;
-    }
     delete this[this.length];
+    if (temp === this.lowest) {
+      if (this.length === 0) {
+        this.lowest = null;
+      } else {
+        this.lowest = this['0']
+      }
+      for (var key in this) {
+        if(parseInt(key)) {
+          if(this[key] < this.lowest) {
+            this.lowest = this[key];
+          }
+        }
+      }
+    }
     return temp;
   };
+
   this.size = function() {
    if (this.length <= 0) {
      return 0;
@@ -52,4 +65,3 @@ var Stack = function() {
     return this.lowest;
   };
 };
-
