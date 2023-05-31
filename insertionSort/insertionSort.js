@@ -37,7 +37,7 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -45,8 +45,19 @@ var testingTransform = function(array) {
   return transform;
 };
 
-var insertionSort = function(array
-) {
-  // Your code goes here. Feel free to add helper functions if needed.
-  return array;
+var insertionSort = function(array) {
+  var resultArray = [];
+  array.forEach((object, index, nums) => {
+    if(resultArray.length === 0) {
+      resultArray.push(object);
+    } else {
+      if (object < resultArray[index - 1]) {
+        resultArray.splice(index - 1, 0, object);
+      } else {
+        resultArray.push(object);
+      }
+    }
+  });
+  return resultArray;
 };
+
