@@ -12,21 +12,23 @@
 
 
 var quicksort = function(array) {
-  var sorted = [];
-  var lower = [];
-  var higher = [];
-  var pivot = array[Math.floor(arr.length/2)];
-  array.forEach(num => {
-      if (num === pivot) {
-          return;
-      } else if (num > pivot) {
-          higher.push(num);
-      } else if (num < pivot) {
-          lower.push(num);
+
+  if (array.length <= 1) {
+      return array;
+  }
+    var pivot = array[0];
+    var left = [];
+    var right = [];
+  for (var i = 1; i < array.length; i ++) {
+      if (array[i] < pivot) {
+          left.push(array[i]);
+      } else {
+          right.push(array[i]);
       }
-  })
+  }
 
-  var concat = lower.concat(pivot);
-  return concat.concat(higher);
-
+  left = quicksort(left);  //[2, 1, 3, 5, 6, 4] [1] {[1]}
+  right = quicksort(right); // [] [3, 5, 6, 4]
+  var sorted = left.concat(pivot, right);
+    return sorted;
 };
