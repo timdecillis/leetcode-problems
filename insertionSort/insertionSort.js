@@ -46,18 +46,14 @@ var testingTransform = function(array) {
 };
 
 var insertionSort = function(array) {
-  var resultArray = [];
-  array.forEach((object, index, nums) => {
-    if(resultArray.length === 0) {
-      resultArray.push(object);
-    } else {
-      if (object < resultArray[index - 1]) {
-        resultArray.splice(index - 1, 0, object);
-      } else {
-        resultArray.push(object);
-      }
+  for (var i = 1; i < array.length; i ++) {
+    var value = array[i];
+    var hole = i;
+    while(hole && value <array[hole - 1]) {
+      array[hole] = array[hole - 1]
+      hole --;
     }
-  });
-  return resultArray;
+    array[hole] = value;
+  }
+  return array;
 };
-
