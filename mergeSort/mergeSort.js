@@ -98,5 +98,25 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  if (array.length <= 1) {
+      return array;
+  }
+  var first;
+  var second;
+  if (array.length === 2) {
+    first = array.slice(0, 1);
+    second = array.slice(1, 2);
+  } else {
+      mid = Math.floor(array.length / 2);
+      first = array.slice(0, mid);
+      second = array.slice(mid, array.length);
+  }
+  var first = mergeSort(first);
+  var second = mergeSort(second);
+
+  if (first[0] < second[0]) {
+      return first.concat(second);
+  } else {
+      return second.concat(first);
+  }
 };
