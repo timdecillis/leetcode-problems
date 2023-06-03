@@ -33,25 +33,16 @@
 
 var shuffleDeck = function(deck) {
   var shuffled = [];
-  var length = deck.length;
-  while(length > 0) {
-    var thisDeck = deck;
-    var index = getRandomInt(0, thisDeck.length - 1);
-    if (shuffled[index]) {
-      continue;
-    } else {
-      shuffled[index] = thisDeck.pop();
-      length --;
+  while (shuffled.length < 52) {
+    var index = Math.floor(Math.random() * 100);
+    var current = deck[index];
+    if (index < 52 && shuffled.indexOf(current) === -1) {
+      shuffled.push(current);
     }
   }
   return shuffled;
 };
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
 var orderedDeck = function() {
