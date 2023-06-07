@@ -40,7 +40,29 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
+var telephoneWords = function (digitString) {
+  var allCombos = [];
+  for (var j = 0; j < digitString.length; j++) {
+  if (digitString.length === 0) {
+    return [];
+  }
+  var letters = phoneDigitsToLetters[digitString[j]];
+  var combos = [];
+  var rounds = digitString.length;
 
-var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  var playRounds = plays => {
+    var plays = plays || '';
+    if (plays.length === rounds) {
+      combos.push(plays);
+      return;
+    }
+    for(var i = 0; i < letters.length; i ++) {
+    var currentLetter = letters[i];
+    playRounds(plays + letters[i])
+    }
+  };
+  playRounds();
+  allCombos.push(combos);
+  }
+  return allCombos;
 };
