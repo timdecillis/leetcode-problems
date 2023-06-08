@@ -12,7 +12,7 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var telephoneWords = function(string) {
+var allAnagrams = function(string) {
   var anagrams = [];
   var makeAnagram = function (anagram, letters) {
     if (letters.length === 0) {
