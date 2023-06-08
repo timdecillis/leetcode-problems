@@ -40,29 +40,18 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
-var telephoneWords = function (digitString) {
-  var allCombos = [];
-  for (var j = 0; j < digitString.length; j++) {
-  if (digitString.length === 0) {
-    return [];
-  }
-  var letters = phoneDigitsToLetters[digitString[j]];
-  var combos = [];
-  var rounds = digitString.length;
-
-  var playRounds = plays => {
-    var plays = plays || '';
-    if (plays.length === rounds) {
-      combos.push(plays);
-      return;
+var telephoneWords = function(input) {
+  var result = [];
+  var lettersForDigits = function (word, digits) {
+    if (digits.length === 0) {
+      return result.push(word);
     }
-    for(var i = 0; i < letters.length; i ++) {
-    var currentLetter = letters[i];
-    playRounds(plays + letters[i])
-    }
+    var current = digits[0];
+    var letters = phoneDigitsToLetters[current].split('');
+    for (var i = 0; i < letters.length; i ++) {
+      lettersForDigits(word + letters[i], digits.slice(1))
+    };
   };
-  playRounds();
-  allCombos.push(combos);
-  }
-  return allCombos;
+  lettersForDigits('', input.split(''));
+  return result;
 };
