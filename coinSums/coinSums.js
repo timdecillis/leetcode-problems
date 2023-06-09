@@ -25,7 +25,29 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
-
+  var count = 0;
+  var dividers = [1, 2, 5, 10, 20, 50, 100, 200];
+  if (total === 1) {
+    return 1;
+  }
+  for (var i = 0; i < dividers.length; i ++) {
+    var chopped = total;
+    while(chopped > 0) {
+      chopped -= dividers[i];
+      for (var j = 0; j < dividers.length; j ++) {
+        if (chopped === dividers[j]) {
+          count ++;
+          break;
+        }
+      }
+    }
+        if (chopped === 0) {
+        count ++;
+        }
+  }
+  return count;
 };
+
+console.log(makeChange(5));
 
 
