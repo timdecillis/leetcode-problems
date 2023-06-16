@@ -12,4 +12,11 @@
   *
   */
 var deepEquals = function(apple, orange) {
+  let areEqual = false;
+  let appleString = JSON.stringify(apple);
+  let orangeString = JSON.stringify(orange);
+  if (appleString === orangeString) {
+      areEqual = true;
+  }
+  return areEqual;
 };
