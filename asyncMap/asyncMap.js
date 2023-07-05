@@ -39,4 +39,6 @@
 
 
 var asyncMap = function(tasks, callback) {
+  console.log('mappin');
 };
+

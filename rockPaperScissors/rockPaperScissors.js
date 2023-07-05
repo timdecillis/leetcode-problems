@@ -18,14 +18,14 @@
 *
 */
 
-var rockPaperScissors = function (rounds) {
+module.exports = rockPaperScissors = function (rounds) {
   if (rounds === 0) {
     return [];
   }
 
-  var lettersArray = ['R', 'P', 'S']
+  var lettersArray = ['R', 'P', 'S'];
   var combos = [];
-  var rounds = rounds || 3
+  var rounds = rounds || 3;
 
   var playRounds = plays => {
     var plays = plays || '';
@@ -33,9 +33,9 @@ var rockPaperScissors = function (rounds) {
       combos.push(plays);
       return;
     }
-    for(var i = 0; i < lettersArray.length; i ++) {
-    var currentLetter = lettersArray[i];
-    playRounds(plays + lettersArray[i])
+    for (var i = 0; i < lettersArray.length; i++) {
+      var currentLetter = lettersArray[i];
+      playRounds(plays + lettersArray[i]);
     }
   };
   playRounds();

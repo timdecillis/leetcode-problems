@@ -12,7 +12,7 @@
 
 
 
-var commonCharacters = function(string1, string2) {
+const commonCharacters = function(string1, string2) {
   var array1 = string1.split('');
   var array2 = string2.split('');
   var resultArray = [];
@@ -22,5 +22,7 @@ var commonCharacters = function(string1, string2) {
     }
   }
   var resultSet = new Set(resultArray);
-  return Array.from(resultSet).join('')
+  return Array.from(resultSet).join('');
 };
+
+module.exports = commonCharacters;

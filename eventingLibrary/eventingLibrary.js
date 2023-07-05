@@ -20,7 +20,15 @@
  * - It is not necessary to write a way to remove listeners.
  */
 
-var mixEvents = function(obj) {
-  // TODO: Your code here
+var mixEvents = function (obj) {
+  obj.on = (event, cb) => {
+    obj[event] = cb;
+  };
+  obj.trigger = (event, ...args) => {
+    if (obj[event]) {
+      obj[event](args);
+    }
+  };
   return obj;
 };
+
