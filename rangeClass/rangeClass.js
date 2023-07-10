@@ -38,17 +38,61 @@
  * evenNumbers.includes(2) should be true, evenNumbers.includes(3) should be false
  */
 
-
-var Range = function(start, end, step) {
+var Range = function (start, end, step = 1) {
+  if (!end) {
+    this.start = start;
+    this.end = start;
+    return;
+  }
+  if (!start) {
+    return null;
+  }
+  this.beginning = start;
+  this.end = end;
+  this.step = step;
 };
 
 Range.prototype.size = function () {
+  return Math.abs(this.end - this.beginning);
 };
 
 Range.prototype.each = function (callback) {
+
+  if ((this.beginning > this.end) && (this.step >= 1)) {
+    for (let i = this.beginning; i >= this.end; i -= this.step) {
+      callback(i);
+    }
+  } else if ((this.beginning < this.end) && (this.step >= 1)) {
+    for (let i = this.beginning; i <= this.end; i += this.step) {
+      callback(i);
+    }
+  } else if ((this.beginning < this.end) && (this.step < 0)) {
+    debugger;
+    for (let i = this.end; i >= this.beginning; i -= Math.abs(this.step)) {
+      callback(i);
+    }
+  } else if ((this.beginning > this.end) && (this.step < 0)) {
+    for (let i = this.beginning; i >= this.end; i -= Math.abs(this.step)) {
+      callback(i);
+    }
+  }
 };
 
 Range.prototype.includes = function (val) {
+  if (this.beginning > this.end) {
+    for (let i = this.beginning; i >= this.end; i -= this.step) {
+      if (i === val) {
+        return true;
+      }
+    }
+  } else {
+    for (let i = this.beginning; i <= this.end; i += this.step) {
+      if (i === val) {
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 var range = new Range(1);
