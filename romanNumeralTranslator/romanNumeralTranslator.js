@@ -18,30 +18,22 @@
  */
 
 var DIGIT_VALUES = {
-  I: 1,
-  V: 5,
-  X: 10,
-  L: 50,
-  C: 100,
-  D: 500,
-  M: 1000
+  i: 1,
+  v: 5,
+  x: 10,
+  l: 50,
+  c: 100,
+  d: 500,
+  m: 1000
 };
 
 var translateRomanNumeral = function (romanNumeral) {
-  if (typeof (s) !== 'string') {
+  if (typeof (romanNumeral) !== 'string') {
     return null;
   }
-  var converter = {
-    i: 1,
-    v: 5,
-    x: 10,
-    l: 50,
-    c: 100,
-    d: 500,
-    m: 1000
-  };
-  s = s.toLowerCase();
-  var stringArray = s.split('');
+  var converter = DIGIT_VALUES;
+  romanNumeral = romanNumeral.toLowerCase();
+  var stringArray = romanNumeral.split('');
   var convertedArray = [];
   for (var i = 0; i < stringArray.length; i++) {
     var current = stringArray[i];
@@ -52,7 +44,7 @@ var translateRomanNumeral = function (romanNumeral) {
     } else if (converter[current] > converter[last]) {
       convertedArray.push(converter[current] - converter[last]);
     } else {
-      convertedArray.push(converter[stringArray[i]]);
+      convertedArray.push(converter[current]);
     }
   }
   var sum = 0;
