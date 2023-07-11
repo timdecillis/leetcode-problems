@@ -27,7 +27,37 @@ var DIGIT_VALUES = {
   M: 1000
 };
 
-var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
-
+var translateRomanNumeral = function (romanNumeral) {
+  if (typeof (s) !== 'string') {
+    return null;
+  }
+  var converter = {
+    i: 1,
+    v: 5,
+    x: 10,
+    l: 50,
+    c: 100,
+    d: 500,
+    m: 1000
+  };
+  s = s.toLowerCase();
+  var stringArray = s.split('');
+  var convertedArray = [];
+  for (var i = 0; i < stringArray.length; i++) {
+    var current = stringArray[i];
+    var next = stringArray[i + 1];
+    var last = stringArray[i - 1];
+    if (converter[current] < converter[next]) {
+      continue;
+    } else if (converter[current] > converter[last]) {
+      convertedArray.push(converter[current] - converter[last]);
+    } else {
+      convertedArray.push(converter[stringArray[i]]);
+    }
+  }
+  var sum = 0;
+  convertedArray.forEach((num) => {
+    sum += num;
+  });
+  return sum;
 };
