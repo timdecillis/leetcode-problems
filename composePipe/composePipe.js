@@ -33,18 +33,32 @@
 
 'use strict';
 
-var compose = function(functions) {
+var pipe = function (...functions) {
+
   return (arg) => {
-    for (var i = arguments.length - 1; i < 0; i --) {
-      arguments[i](arg);
+    let accum;
+    for (var i = 0; i < functions.length; i++) {
+      if (i === 0) {
+        accum = functions[i](arg);
+      } else {
+        accum = functions[i](accum);
+      }
     }
-  }
+    return accum;
+  };
 };
 
-var pipe = function(functions) {
+var compose = (...functions) => {
+
   return (arg) => {
-    for (var i = 0; i < arguments.length; i ++) {
-      arguments[i](arg);
+    let accum;
+    for (let i = functions.length - 1; functions[i]; i--) {
+      if (i === functions.length - 1) {
+        accum = functions[i](arg);
+      } else {
+        accum = functions[i](accum);
+      }
     }
-  }
+    return accum;
+  };
 };
