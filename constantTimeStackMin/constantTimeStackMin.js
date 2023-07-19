@@ -17,12 +17,12 @@
 /**
   * Stack Class
   */
-var Stack = function() {
+var Stack = function () {
   this.length = 0;
   this.nextHighest = null;
   this.lowest = null;
 
-  this.push = function(value) {
+  this.push = function (value) {
     if (this.length === 0) {
       this.lowest = value;
     }
@@ -31,22 +31,22 @@ var Stack = function() {
       this.lowest = value;
     }
     this[this.length] = value;
-    this.length ++;
+    this.length++;
   };
 
-  this.pop = function() {
-    this.length --;
+  this.pop = function () {
+    this.length--;
     var temp = this[this.length];
     delete this[this.length];
     if (temp === this.lowest) {
       if (this.length === 0) {
         this.lowest = null;
       } else {
-        this.lowest = this['0']
+        this.lowest = this['0'];
       }
       for (var key in this) {
-        if(parseInt(key)) {
-          if(this[key] < this.lowest) {
+        if (parseInt(key)) {
+          if (this[key] < this.lowest) {
             this.lowest = this[key];
           }
         }
@@ -55,13 +55,13 @@ var Stack = function() {
     return temp;
   };
 
-  this.size = function() {
-   if (this.length <= 0) {
-     return 0;
-   }
+  this.size = function () {
+    if (this.length <= 0) {
+      return 0;
+    }
     return this.length;
   };
-  this.min = function() {
+  this.min = function () {
     return this.lowest;
   };
 };

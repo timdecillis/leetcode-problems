@@ -9,7 +9,6 @@
 
 
 var largestProductOfThree = function (array) {
-  debugger;
   let toMultiply = [];
   while (toMultiply.length < 3) {
     let highest = 0;
