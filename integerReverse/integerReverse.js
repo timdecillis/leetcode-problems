@@ -11,7 +11,7 @@
 
 reverseInteger = function (number) {
   // if number is only one digit
-    //return the number
+  //return the number
   // else
-    //
+  //
 };

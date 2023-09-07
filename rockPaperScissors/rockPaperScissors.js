@@ -18,27 +18,23 @@
 *
 */
 
-module.exports = rockPaperScissors = function (rounds) {
+const rps = (rounds) => {
+  let result = [];
+  let letters = ['R', 'P', 'S'];
   if (rounds === 0) {
-    return [];
+    return result;
   }
-
-  var lettersArray = ['R', 'P', 'S'];
-  var combos = [];
-  var rounds = rounds || 3;
-
-  var playRounds = plays => {
-    var plays = plays || '';
+  let playRounds = (plays) => {
     if (plays.length === rounds) {
-      combos.push(plays);
+      result.push(plays);
       return;
     }
-    for (var i = 0; i < lettersArray.length; i++) {
-      var currentLetter = lettersArray[i];
-      playRounds(plays + lettersArray[i]);
-    }
+    letters.forEach((letter) => {
+      playRounds(plays + letter);
+    });
   };
-  playRounds();
-  return combos;
+  playRounds('');
+  return result;
 };
 
+console.log(rps(3));

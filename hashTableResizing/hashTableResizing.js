@@ -10,7 +10,7 @@
 // This is a "hashing function". You don't need to worry about it, just use it
 // to turn any string into an integer that is well-distributed between
 // 0 and max - 1
-var getIndexBelowMaxForKey = function(str, max) {
+var getIndexBelowMaxForKey = function (str, max) {
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
     hash = (hash << 5) + hash + str.charCodeAt(i);
@@ -20,70 +20,70 @@ var getIndexBelowMaxForKey = function(str, max) {
   return hash % max;
 };
 
-var makeHashTable = function() {
+var makeHashTable = function () {
   var result = {};
   var storage = [];
   var storageLimit = 4;
   var size = 0;
 
-  result.insert = function(key, value) {
+  result.insert = function (key, value) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
 
     var bucket = storage[index];
     if (bucket === undefined) {
       bucket = [];
       storage[index] = bucket;
-      bucket.push([key, value])
-      size ++;
+      bucket.push([key, value]);
+      size++;
       if (size > (.75 * storageLimit)) {
-          result.double();
+        result.double();
       }
       return;
     }
-    for (var i = 0; i < bucket.length; i ++) {
+    for (var i = 0; i < bucket.length; i++) {
       var tuple = bucket[i];
       if (tuple[0] === key) {
         tuple[1] = value;
-        size ++;
+        size++;
       } else {
-          bucket.push[key, value];
-          size ++;
+        bucket.push[key, value];
+        size++;
       }
     }
     if (size > (.75 * storageLimit)) {
-          result.double();
-      }
+      result.double();
+    }
 
   };
 
-  result.retrieve = function(key) {
+  result.retrieve = function (key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
     var bucket = storage[index];
-      for (var i = 0; i < bucket.length; i ++) {
-        var tuple = bucket[i];
-        if (tuple[0] === key) {
-          return tuple[1];
-        }
+    for (var i = 0; i < bucket.length; i++) {
+      var tuple = bucket[i];
+      if (tuple[0] === key) {
+        return tuple[1];
       }
+    }
   };
 
-  result.remove = function(key) {
+  result.remove = function (key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
     var bucket = storage[index];
-    for (var i = 0; i < bucket.length; i ++) {
+    for (var i = 0; i < bucket.length; i++) {
       var tuple = bucket[i];
       if (tuple[0] === key) {
         bucket.splice(i, 1);
-        size --;
+        size--;
       }
     }
-      if (size < (.25 * storageLimit)) {
-          result.shrink();
-      }
+    if (size < (.25 * storageLimit)) {
+      result.shrink();
+    }
   };
 
   result.shrink = function () {
-      storageLimit *= .5;
+    storageLimit *= .5;
   };
 
   result.double = function () {
